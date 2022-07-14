@@ -13,6 +13,8 @@ jobs:
       - uses: actions/checkout@v3
       - name: Update date to README.md
         run: |
-          sed 's/\x60((.|\n)*)\x60/\x60$(date "+%Y-%m-%d")\x60/g' README.md
+          date = $(date "+%Y-%m-%d")
+          echo $date
+          sed 's/\x60((.|\n)*)\x60/\x60$date\x60/g' README.md
           git add README.md
           git commit -m "update: date
