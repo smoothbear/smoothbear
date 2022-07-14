@@ -1,0 +1,16 @@
+name: Update to README
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  change-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Update date to README.md
+        runs: |
+          sed 's/```((.|\n)*)```/```$(date "+%Y-%m-%d")```/g' README.md
+          git add README.md
+          git commit -m "update: date
